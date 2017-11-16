@@ -4,6 +4,10 @@
 
 <h1>Your Catalog</h1>
 
+<% if @counter > 5 %>
+  This is your visit number <%= @counter %> here
+<% end %>
+
 <% @products.each do |product| %>
   <div class="entry">
     <%= image_tag(product.image_url) %>
@@ -11,6 +15,7 @@
     <% sanitize(product.description) %>
     <div class="price_line">
       <span class="price"><%= number_to_currency(product.price) %></span>
-    </divs>
+      <%= button_to 'Add to Cart', line_items_path(:product_id => product) %>
+    </div>
   </div>
 <% end %>
